@@ -3,7 +3,7 @@
 
 1. nodejs 설치
 2. create-react-app 설치 (최초1번)
-
+- git clone 시 최초 1번 실행 필요 (인텔리제이는 자동설치)
 ```
 $ npm install -g create-react-app
 ```
