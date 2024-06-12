@@ -1,7 +1,8 @@
-import logo from './logo.svg';
 import './App.css';
 import React from "react";
-import Hello from './components/Hello'
+import Hello from "./components/Hello";
+import Bye from "./components/Bye";
+import Greet from "./components/Greet";
 
 function App() {
     // jsx 문법
@@ -16,8 +17,10 @@ function App() {
     const $h2 = <h2>방가햄톨</h2>;
     return (
       <>
+        <Bye />
         <Hello />
-
+        <Bye />
+          <Greet />
       </>
     );
 }
