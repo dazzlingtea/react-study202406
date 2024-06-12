@@ -1,6 +1,7 @@
-// import logo from './logo.svg';
+import logo from './logo.svg';
 import './App.css';
 import React from "react";
+import Hello from './components/Hello'
 
 function App() {
     // jsx 문법
@@ -14,18 +15,10 @@ function App() {
     const hello = "안녕안녕?!"
     const $h2 = <h2>방가햄톨</h2>;
     return (
-      <React.Fragment>
-        <div>
-            <div className="App">
-              <h1>{hello}</h1>
-              {$h2}
-            </div>
-            <div className='noname'>
-                <input type="text"/>
-                <label htmlFor=""></label>
-            </div>
-        </div>
-      </React.Fragment>
+      <>
+        <Hello />
+
+      </>
     );
 }
 
