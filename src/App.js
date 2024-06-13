@@ -15,12 +15,22 @@ const App = () => {
     {
       title: "족발 존맛",
       price: 27000,
-      date : new Date(2024, 6-1, 7)
+      date : new Date(2023, 6-1, 7)
     },
     {
       title: "헬스장 등록",
       price: 110000,
       date : new Date(2024, 6-1, 12)
+    },
+    {
+      title: "돼지바 빙수",
+      price: 9000,
+      date : new Date(2022, 8-1, 16)
+    },
+    {
+      title: "파파존스 페퍼로니피자",
+      price: 21000,
+      date : new Date(2023, 5-1, 4)
     }
   ];
   // ExpenseForm 에게 내려보낼 함수
