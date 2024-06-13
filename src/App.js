@@ -1,7 +1,7 @@
 import './App.css';
 import React from "react";
 import ExpenseList from "./components/expenses/ExpenseList";
-import Greet from "./components/Greet";
+import Counter from "./components/practice/Counter";
 
 const App = () => {
 
@@ -26,24 +26,9 @@ const App = () => {
 
   return (
     <>
+      <Counter />
       <ExpenseList expenses={expenses} />
-      {/*<Greet>*/}
-      {/*  <ul>*/}
-      {/*    <li>망고</li>*/}
-      {/*    <li>자몽</li>*/}
-      {/*    <li>레몬</li>*/}
-      {/*  </ul>*/}
-      {/*</Greet>*/}
-      {/*<Greet>*/}
-      {/*  <ol>*/}
-      {/*    <li>하나</li>*/}
-      {/*    <li>둘</li>*/}
-      {/*    <li>셋</li>*/}
-      {/*  </ol>*/}
-      {/*</Greet>*/}
-      {/*<Greet>*/}
-      {/*  <a href="#">링크</a>*/}
-      {/*</Greet>*/}
+
     </>
   );
 }
