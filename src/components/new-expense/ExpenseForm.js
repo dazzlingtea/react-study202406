@@ -3,11 +3,17 @@ import './ExpenseForm.css';
 
 const ExpenseForm = () => {
 
-  // 입력칸 3개의 값을 상태값으로 관리
-  const [title, setTitle] = useState('');
-  const [price, setPrice] = useState(0);
-  const [date, setDate] = useState(null);
+  // 입력칸 3개의 값을 각각의 상태값으로 관리
+  // const [title, setTitle] = useState('');
+  // const [price, setPrice] = useState(0);
+  // const [date, setDate] = useState(null);
 
+  // 입력칸 3개의 값을 하나의 상태값으로 관리
+  const [userInput, setUserInput] = useState({
+    title: '',
+    price: 0,
+    date: null
+  });
 
   // 오늘 날짜를 YYYY-MM-DD 형식으로 가져오는 함수
   const getTodayDate = () => {
@@ -20,15 +26,27 @@ const ExpenseForm = () => {
 
   // 제목이 입력되었을 때 발생하는 이벤트 핸들러
   const titleChangeHandler = e => {
-    setTitle(e.target.value);
+
+    // 객체나 배열상태로 관리되는 상태값은
+    // 상태변경시 새로운 객체나 배열을 setter에 전달해야 함
+    setUserInput({
+      ...userInput,
+      title: e.target.value,
+    });
   };
   // 가격이 입력되었을 때 발생하는 이벤트 핸들러
   const priceChangeHandler = e => {
-    setPrice(+e.target.value);
+    setUserInput({
+      ...userInput,
+      price: +e.target.value,
+    });
   };
   // 날짜가 입력되었을 때 발생하는 이벤트 핸들러
   const dateChangeHandler = e => {
-    setDate(e.target.value)
+    setUserInput({
+      ...userInput,
+      date: e.target.value
+    });
   };
 
   // 폼 전송 이벤트 핸들러
@@ -37,12 +55,8 @@ const ExpenseForm = () => {
     console.log('폼이 전송됨!');
 
     // 지출 내역 객체를 생성
-    const newExpense = {
-      title,
-      price,
-      date
-    };
-    console.log(newExpense)
+
+    console.log(userInput)
   };
 
 
