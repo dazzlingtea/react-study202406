@@ -4,17 +4,19 @@ import ExpenseForm from './ExpenseForm';
 
 const NewExpense = ({onSave}) => {
 
-  const [isFormOpen, setIsFormOpen] = useState(false);
+  const [toggle, setToggle] = useState(false);
 
-  const formHandler = (e) => {
-    setIsFormOpen(!isFormOpen);
-  }
+  const startInsertModeHandler = () => setToggle(true);
+  const stopInsertModeHandler = () => setToggle(false);
 
-  const newExpenseContent = <ExpenseForm onAdd={onSave} formHandler={formHandler}/>;
-  const noContent = <button onClick={formHandler}>새로운 지출 추가하기</button>;
+  let newExpenseContent = <button onClick={startInsertModeHandler}>새로운 지출 추가하기</button>;
+
+  if(toggle) newExpenseContent = <ExpenseForm onAdd={onSave} onCancel={stopInsertModeHandler} />;
+
+
   return (
     <div className="new-expense">
-      {isFormOpen ? newExpenseContent : noContent}
+      {newExpenseContent}
     </div>
   )
 
