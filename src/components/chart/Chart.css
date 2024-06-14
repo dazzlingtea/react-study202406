@@ -6,4 +6,5 @@
     display: flex;
     justify-content: space-around;
     height: 10rem;
+    box-shadow: 1px 1px 1px rgba(42, 42, 42, 0.17);
 }

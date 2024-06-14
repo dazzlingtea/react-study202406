@@ -47,6 +47,7 @@ const App = () => {
   //
   // };
 
+
   return (
     <>
       <NewExpense onSave={onAddExpense} />

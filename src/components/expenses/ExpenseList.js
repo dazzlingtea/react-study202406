@@ -4,7 +4,7 @@ import ExpenseFilter from "./ExpenseFilter";
 import './ExpenseList.css';
 import ExpenseChart from "../chart/ExpenseChart";
 
-const ExpenseList = ({expenses}) => {
+const ExpenseList = ({expenses, onFiltered}) => {
 
   // 선택된 연도로 재렌더링하기 위해 연도를 상태값으로 관리
   const [filteredYear, setFilteredYear]
@@ -15,6 +15,7 @@ const ExpenseList = ({expenses}) => {
     // console.log('ExpenseList: ', filteredYear);
     setFilteredYear(filteredYear);
   };
+
 
   // 연도로 필터링한 배열
   const filteredExpenses = expenses.filter(ex => ex.date.getFullYear().toString() === filteredYear);
@@ -39,7 +40,7 @@ const ExpenseList = ({expenses}) => {
   return (
     <div className={'expenses'}>
       <ExpenseFilter onFilter={onFilterChange}/>
-      <ExpenseChart />
+      <ExpenseChart filteredList={filteredExpenses} />
       {/*{ filteredExpenses.length > 0 ? expenseContent : noContent }*/}
       { content }
 
