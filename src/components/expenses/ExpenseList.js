@@ -11,7 +11,7 @@ const ExpenseList = ({expenses}) => {
 
   const onFilterChange = (filteredYear) => {
     // ExpenseFilter에 있는 선택된 연도값을 여기서 출력!
-    console.log('ExpenseList: ', filteredYear);
+    // console.log('ExpenseList: ', filteredYear);
     setFilteredYear(filteredYear);
   };
 
