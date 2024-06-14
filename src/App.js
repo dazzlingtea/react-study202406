@@ -38,16 +38,14 @@ const App = () => {
   const [expenseList, setExpenseList] = useState(expenses);
 
   // ExpenseForm 에게 내려보낼 함수
-  const onAddExpense = (userInput) => {
-    console.log('App.js가 내려보낸 함수 호출!')
-    // console.log(userInput);
-
-    expenseList.push(userInput);
-    const newExpenseList = [...expenseList];
-    setExpenseList(newExpenseList);
-
-    // console.log(expenseList);
-  };
+  const onAddExpense = (userInput) => setExpenseList([...expenseList, userInput]);
+  // const onAddExpense = (userInput) => {
+  //
+  //   expenseList.push(userInput);
+  //   const newExpenseList = [...expenseList];
+  //   setExpenseList([...expenseList]);
+  //
+  // };
 
   return (
     <>
