@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import CourseInput from './components/CourseGoals/CourseInput';
 import CourseList from './components/CourseGoals/CourseList';
 import './App.css';
@@ -26,16 +26,13 @@ const App = () => {
 
   // CourseItem에게 전달할 함수
   const deleteGoalHandler = (id) => {
-    let index = -1;
-    for (let i=0; i<goals.length; i++) {
-      if(goals[i].id === id) {
-        index = i;
-        break;
-      }
-    }
-    console.log(index);
-    goals.splice(index, 1);
-    setGoals([...goals]);
+
+    // goals.splice(goals.findIndex(g => g.id === id),1);
+
+    // 필터는 복사한 새배열을 주므로 바로 setter 가능
+    // const filteredGoals = goals.filter(g => g.id !== id);
+
+    setGoals(goals.filter(g => g.id !== id));
   };
 
   return (
