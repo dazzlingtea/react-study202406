@@ -24,7 +24,6 @@ const App = () => {
 
   return (
     <>
-      <ErrorModal title={'모달 제목'} message={'내용 12345'} />
       <AddUsers onAddUser={addUserHandler} />
       <UserList users={userList} />
     </>
