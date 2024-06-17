@@ -4,6 +4,7 @@ import CourseList from './components/CourseGoals/CourseList';
 import './App.css';
 import AddUsers from "./components/Users/AddUsers";
 import UserList from "./components/Users/UserList";
+import ErrorModal from "./components/UI/Modal/ErrorModal";
 
 const App = () => {
 
@@ -23,6 +24,7 @@ const App = () => {
 
   return (
     <>
+      <ErrorModal title={'모달 제목'} message={'내용 12345'} />
       <AddUsers onAddUser={addUserHandler} />
       <UserList users={userList} />
     </>
