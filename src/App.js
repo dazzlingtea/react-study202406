@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import CourseInput from './components/CourseGoals/CourseInput';
 import CourseList from './components/CourseGoals/CourseList';
 import './App.css';
+import AddUsers from "./components/Users/AddUsers";
+import UserList from "./components/Users/UserList";
 
 // 기본 더미 데이터
 const DUMMY_DATA = [
@@ -17,33 +19,12 @@ const DUMMY_DATA = [
 
 const App = () => {
 
-  const [goals, setGoals] = useState(DUMMY_DATA);
-
-  // CourseInput 에게 전달할 함수
-  const addGoalHandler = (goalObject) => {
-    setGoals([...goals, goalObject]);
-  };
-
-  // CourseItem에게 전달할 함수
-  const deleteGoalHandler = (id) => {
-
-    // goals.splice(goals.findIndex(g => g.id === id),1);
-
-    // 필터는 복사한 새배열을 주므로 바로 setter 가능
-    // const filteredGoals = goals.filter(g => g.id !== id);
-
-    setGoals(goals.filter(g => g.id !== id));
-  };
 
   return (
-    <div>
-      <section id="goal-form">
-        <CourseInput onAdd={addGoalHandler} />
-      </section>
-      <section id="goals">
-        <CourseList items={goals} onDelete={deleteGoalHandler} />
-      </section>
-    </div>
+    <>
+      <AddUsers />
+      <UserList />
+    </>
   );
 };
 
