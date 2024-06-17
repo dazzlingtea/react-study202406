@@ -5,25 +5,26 @@ import './App.css';
 import AddUsers from "./components/Users/AddUsers";
 import UserList from "./components/Users/UserList";
 
-// 기본 더미 데이터
-const DUMMY_DATA = [
-  {
-    id: 'g1',
-    text: '리액트 컴포넌트 스타일링 마스터하기'
-  },
-  {
-    id: 'g2',
-    text: 'UI/UX 프로그래밍 쌉고수되기'
-  },
-];
-
 const App = () => {
 
+  const [userList, setUserList] = useState([]);
+
+  const addUserHandler = user => {
+    console.log(user);
+    // 상태값 바꾸기 위해서 카피해서 새 배열로 만들고 setter에 대입
+
+    setUserList(prev => [
+      ...prev,
+      {...user,
+        id: Math.random().toString()
+      }
+    ]);
+  };
 
   return (
     <>
-      <AddUsers />
-      <UserList />
+      <AddUsers onAddUser={addUserHandler} />
+      <UserList users={userList} />
     </>
   );
 };
