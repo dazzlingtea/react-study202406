@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './AddUsers.module.css';
-import Card from '../UI/Card'
+import Card from '../UI/Card';
+import Button from '../UI/Button';
 
 const AddUsers = () => {
   return (
