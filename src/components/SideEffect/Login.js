@@ -7,7 +7,7 @@ import {logDOM} from "@testing-library/react";
 
 const Login = ({onLogin}) => {
 
-  console.log('렌더링 수행!')
+  // console.log('렌더링 수행!')
 
   // 사용자가 입력한 이메일을 상태관리
   const [enteredEmail, setEnteredEmail] = useState('');
@@ -47,12 +47,23 @@ const Login = ({onLogin}) => {
 
   // useEffect
   useEffect(()=>{
-    console.log('useEffect call in Login.js');
-    setFormIsValid(
-      enteredPassword.trim().length > 6 && enteredEmail.includes('@')
-    );
+
+    const timer = setTimeout(()=>{
+      console.log('useEffect call in Login.js');
+      setFormIsValid(
+        enteredPassword.trim().length > 6 && enteredEmail.includes('@')
+      );
+    }, 1000);
+    
+    // clean up 함수는 컴포넌트가 업데이트되거나 사라지기 전에 실행
+    return () => {
+      // console.log('clean up: ', enteredEmail);
+      clearTimeout(timer);
+    };
 
   }, [enteredEmail, enteredPassword]);
+
+  // console.log('밖: ',enteredEmail);
 
   return (
     <Card className={styles.login}>
