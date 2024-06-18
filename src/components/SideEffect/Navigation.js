@@ -12,7 +12,7 @@ const Navigation = ({onLogout}) => {
           <a href="/">Admin</a>
         </li>
         <li>
-          <a href="/" onClick={onLogout}>Logout</a>
+          <button onClick={onLogout}>Logout</button>
         </li>
       </ul>
     </nav>

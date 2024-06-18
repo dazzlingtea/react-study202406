@@ -1,10 +1,13 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import Card from '../UI/Card';
 import styles from './Login.module.css';
 import Button from '../UI/Button';
+import {logDOM} from "@testing-library/react";
 
 const Login = ({onLogin}) => {
+
+  console.log('렌더링 수행!')
 
   // 사용자가 입력한 이메일을 상태관리
   const [enteredEmail, setEnteredEmail] = useState('');
@@ -20,17 +23,11 @@ const Login = ({onLogin}) => {
   const emailChangeHandler = (e) => {
     setEnteredEmail(e.target.value);
 
-    setFormIsValid(
-      e.target.value.includes('@') && enteredPassword.trim().length > 6
-    );
   };
 
   const passwordChangeHandler = (e) => {
     setEnteredPassword(e.target.value);
 
-    setFormIsValid(
-      e.target.value.trim().length > 6 && enteredEmail.includes('@')
-    );
   };
 
   const validateEmailHandler = () => {
@@ -47,6 +44,15 @@ const Login = ({onLogin}) => {
     // App.js 에서 받은 로그인핸들러 호출
     onLogin(enteredEmail, enteredPassword);
   };
+
+  // useEffect
+  useEffect(()=>{
+    console.log('useEffect call in Login.js');
+    setFormIsValid(
+      enteredPassword.trim().length > 6 && enteredEmail.includes('@')
+    );
+
+  }, [enteredEmail, enteredPassword]);
 
   return (
     <Card className={styles.login}>
