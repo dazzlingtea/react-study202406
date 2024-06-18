@@ -40,9 +40,15 @@ const App = () => {
     setIsloggedIn(true);
   };
 
+  const logoutHandler = () => {
+    localStorage.removeItem('login-flag');
+    setIsloggedIn(false);
+  };
+
+
   return (
     <>
-      <MainHeader />
+      <MainHeader onLogout={logoutHandler} />
       <main>
         {isLoggedIn && <Home/>}
         {!isLoggedIn && <Login onLogin={loginHandler}/>}
