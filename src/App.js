@@ -1,8 +1,9 @@
 import React, {useEffect, useRef, useState} from 'react';
 import './App.css';
-import MainHeader from "./components/SideEffect/MainHeader";
-import Home from "./components/SideEffect/Home";
-import Login from "./components/SideEffect/Login";
+import MainHeader from "./components/sideEffect/MainHeader";
+import Home from "./components/sideEffect/Home";
+import Login from "./components/sideEffect/Login";
+import AuthContext from "./store/auth-context";
 
 
 const App = () => {
@@ -47,14 +48,17 @@ const App = () => {
 
 
   return (
-    <>
-      <MainHeader onLogout={logoutHandler} />
+    <AuthContext.Provider value={{
+      isLoggedIn: isLoggedIn,
+      onLogout: logoutHandler
+    }}>
+      <MainHeader onLogout={logoutHandler}/>
       <main>
         {isLoggedIn && <Home/>}
-        {!isLoggedIn && <Login onLogin={loginHandler}/>}
+        {!isLoggedIn && <Login onLogin={loginHandler} />}
       </main>
 
-    </>
+    </AuthContext.Provider>
   );
 };
 
