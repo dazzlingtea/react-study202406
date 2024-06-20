@@ -15,7 +15,7 @@ const Player = () => {
     <section id="player">
       <h2>Welcome {enteredName}!</h2>
       <p>
-        <Input ref={$nameInputRef.current} type={'text'} />
+        <Input ref={$nameInputRef} type={'text'} />
         {/*<input ref={$nameInputRef} type="text"/>*/}
         <button onClick={nameChangeHandler}>Set Name</button>
       </p>
