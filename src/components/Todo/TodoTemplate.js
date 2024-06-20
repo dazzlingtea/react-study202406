@@ -14,6 +14,7 @@ const DUMMY_TODOS = [
 const TodoTemplate = () => {
 
   const [todoList, setTodoList] = useState(DUMMY_TODOS);
+  const [left, setLeft] = useState(DUMMY_TODOS.filter(todo=> todo.done === false));
 
   const makeNewId = () => {
     if(todoList.length === 0) return 1;
@@ -35,11 +36,24 @@ const TodoTemplate = () => {
     setTodoList(todoList.filter(todo => todo.id !== id));
   };
 
+  const checkTodo = id => {
+    const copyTodoList = [...todoList];
+    const foundTodo = copyTodoList.find(todo => todo.id === id);
+    foundTodo.done = !foundTodo.done;
+    setTodoList(copyTodoList);
+
+    // setTodoList(todoList.map(todo =>
+    //   todo.id === id
+    //     ? {...todo, done: !todo.done}
+    //     : todo  // 해당 안되면 원래 자신 그대로 매핑
+    // ));
+  }
+
   return (
 
     <div className='TodoTemplate'>
-      <TodoHeader />
-      <TodoMain todos={todoList} onRemove={removeTodo} />
+      <TodoHeader count={left.length} />
+      <TodoMain todos={todoList} onRemove={removeTodo} onCheck={checkTodo} />
       <TodoInput onAdd={addTodo} />
       {/*<TodoHeader count={todos.length} />*/}
       {/*<TodoMain items={todos} onCheckCount={checkCountHandler} onDelete={deleteHandler} />*/}
