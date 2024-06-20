@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 
-// 모듈의 전역변수로 변경해보면
-let timer;
 
 const TimerChallenge = ({ title, targetTime }) => {
+
+  // timer를 ref 변수로 관리
+  const timer = useRef();
 
   // 타이머가 시작되었는지를 확인하는 상태값
   const [timerStarted, setTimerStarted] = useState(false);
@@ -12,7 +13,7 @@ const TimerChallenge = ({ title, targetTime }) => {
   const [timerExpired, setTimerExpired] = useState(false);
 
   const startHandler = e => {
-    timer = setTimeout(() => {
+    timer.current = setTimeout(() => {
       console.log('시간 만료!');
       setTimerExpired(true);
     }, targetTime * 1000);
@@ -27,7 +28,7 @@ const TimerChallenge = ({ title, targetTime }) => {
   // 처음 5초짜리 timer가 1초짜리에 의해 덮어씌워지기 때문
   const stopHandler = e => {
 
-    clearTimeout(timer);
+    clearTimeout(timer.current);
 
   };
 
