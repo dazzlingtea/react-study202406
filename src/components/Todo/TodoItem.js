@@ -3,7 +3,7 @@ import {MdDelete, MdDone} from "react-icons/md";
 
 import './scss/TodoItem.scss';
 
-const TodoItem = ({item, onDelete, onCheckCount}) => {
+const TodoItem = ({item, onDelete, onCheck}) => {
 
   const [isCheck, setIsCheck] = useState(false);
   const [countCheck, setCountCheck] = useState(0);
@@ -19,11 +19,11 @@ const TodoItem = ({item, onDelete, onCheckCount}) => {
       count--;
       setIsCheck(false);
       // setCountCheck(count);
-      onCheckCount(count);
+      onCheck(count);
     } else {
       setIsCheck(true);
       // setCountCheck(count)
-      onCheckCount(count);
+      onCheck(count);
     }
   }
 
