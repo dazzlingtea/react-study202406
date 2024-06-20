@@ -23,18 +23,18 @@ const TodoInput = ({onAdd, lastId}) => {
 
     setTodoInput('');
   };
-  const inputForm = (
-    <div className='form-wrapper'>
-      <form className='insert-form' onSubmit={submitHandler}>
-        <input
-          type='text'
-          placeholder='할 일을 입력 후, 엔터를 누르세요!'
-          onChange={todoChangeHandler}
-          value={todoInput}
-        />
-      </form>
-    </div>
-  );
+  // const inputForm = (
+  //   <div className='form-wrapper'>
+  //     <form className='insert-form' onSubmit={submitHandler}>
+  //       <input
+  //         type='text'
+  //         placeholder='할 일을 입력 후, 엔터를 누르세요!'
+  //         onChange={todoChangeHandler}
+  //         value={todoInput}
+  //       />
+  //     </form>
+  //   </div>
+  // );
 
   // 버튼 토글링 함수
   const openHandler = e => {
@@ -48,7 +48,19 @@ const TodoInput = ({onAdd, lastId}) => {
 
   return (
     <>
-      { isOpen ? inputForm : '' }
+      {/*{ isOpen ? inputForm : '' }*/}
+      { isOpen && (
+        <div className='form-wrapper'>
+          <form className='insert-form' onSubmit={submitHandler}>
+            <input
+              type='text'
+              placeholder='할 일을 입력 후, 엔터를 누르세요!'
+              onChange={todoChangeHandler}
+              value={todoInput}
+            />
+          </form>
+        </div>
+      )}
       <button className={`insert-btn ${isOpen ? 'open' : ''}`} onClick={openHandler}>
         <MdAdd/>
       </button>

@@ -5,6 +5,8 @@ import './scss/TodoItem.scss';
 
 const TodoItem = ({item, onDelete, onCheck}) => {
 
+  const { title, done } = item;
+
   const [isCheck, setIsCheck] = useState(false);
   const [countCheck, setCountCheck] = useState(0);
 
@@ -28,15 +30,26 @@ const TodoItem = ({item, onDelete, onCheck}) => {
   }
 
   return (
+
     <li className='todo-list-item'>
-      <div className={`check-circle ${isCheck ? 'active':''}`} onClick={checkItemHandler}>
-        <MdDone/>
+      <div className={`check-circle ${done ? 'active': undefined}`}>
+        {done && <MdDone/>}
       </div>
-      <span className={`text ${isCheck? 'finish':''}`}>{item.text}</span>
-      <div className='remove' onClick={deleteItemHandler}>
+      <span className={`text ${done ? 'finish' : undefined}`}>{title}</span>
+      <div className='remove'>
         <MdDelete/>
       </div>
     </li>
+
+  // <li className='todo-list-item'>
+  //   <div className={`check-circle ${isCheck ? 'active' : ''}`} onClick={checkItemHandler}>
+  //     <MdDone/>
+  //   </div>
+  //   <span className={`text ${isCheck ? 'finish' : ''}`}>{item.text}</span>
+  //     <div className='remove' onClick={deleteItemHandler}>
+  //       <MdDelete/>
+  //     </div>
+  //   </li>
   );
 };
 
