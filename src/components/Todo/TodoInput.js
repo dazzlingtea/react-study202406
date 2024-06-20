@@ -3,7 +3,7 @@ import {MdAdd} from "react-icons/md";
 
 import './scss/TodoInput.scss';
 
-const TodoInput = ({onAdd, lastId}) => {
+const TodoInput = ({ onAdd }) => {
 
   // input의 주소값을 기억하는 변수 생성 (DOM qS 할때 주로 useRef 사용)
   const $textInput = useRef();
@@ -36,9 +36,7 @@ const TodoInput = ({onAdd, lastId}) => {
             <input
               type='text'
               placeholder='할 일을 입력 후, 엔터를 누르세요!'
-              // onChange={todoChangeHandler}
               ref={$textInput}
-              // value={todoInput}
             />
           </form>
         </div>
