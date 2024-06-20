@@ -33,14 +33,14 @@ const TodoTemplate = () => {
   }
 
   const deleteHandler = (id) => {
-    setTodos(todos.filter(t => t.id != id));
+    setTodos(todos.filter(t => t.id !== id));
   }
 
 
   return (
 
     <div className='TodoTemplate'>
-      <TodoHeader count={todos.length - checks} />
+      <TodoHeader count={todos.length} />
       <TodoMain items={todos} onCheckCount={checkCountHandler} onDelete={deleteHandler} />
       <TodoInput onAdd={addHandler} lastId={todos[todos.length - 1].id} />
     </div>

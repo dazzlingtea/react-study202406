@@ -6,6 +6,7 @@ import './scss/TodoInput.scss';
 const TodoInput = ({onAdd, lastId}) => {
 
   const [todoInput, setTodoInput] = useState('');
+  // 입력창 토글링 상태값
   const [isOpen, setIsOpen] = useState(false);
 
   const todoChangeHandler = (e) => {
@@ -35,12 +36,14 @@ const TodoInput = ({onAdd, lastId}) => {
     </div>
   );
 
+  // 버튼 토글링 함수
   const openHandler = e => {
-    if(!isOpen) {
-      setIsOpen(true);
-    } else {
-      setIsOpen(false);
-    }
+    // if(!isOpen) {
+    //   setIsOpen(true);
+    // } else {
+    //   setIsOpen(false);
+    // }
+    setIsOpen(prevOpen => !prevOpen);
   }
 
   return (
