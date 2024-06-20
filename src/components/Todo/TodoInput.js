@@ -1,48 +1,29 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {MdAdd} from "react-icons/md";
 
 import './scss/TodoInput.scss';
 
 const TodoInput = ({onAdd, lastId}) => {
 
-  const [todoInput, setTodoInput] = useState('');
+  // input의 주소값을 기억하는 변수 생성 (DOM qS 할때 주로 useRef 사용)
+  const $textInput = useRef();
+
   // 입력창 토글링 상태값
   const [isOpen, setIsOpen] = useState(false);
 
-  const todoChangeHandler = (e) => {
-    setTodoInput(e.target.value);
-  }
   const submitHandler = e => {
     e.preventDefault();
-    console.log('폼 전송: ', todoInput);
-    const newTodo = {
-      id: lastId + 1,
-      text: todoInput,
-    }
-    onAdd(newTodo);
-
-    setTodoInput('');
+    // console.log($textInput.current.value); // 무조건 current
+    onAdd($textInput.current.value);
+    // form이 제출되면 입력창 비우기
+    $textInput.current.value = '';
+    setIsOpen(false);
   };
-  // const inputForm = (
-  //   <div className='form-wrapper'>
-  //     <form className='insert-form' onSubmit={submitHandler}>
-  //       <input
-  //         type='text'
-  //         placeholder='할 일을 입력 후, 엔터를 누르세요!'
-  //         onChange={todoChangeHandler}
-  //         value={todoInput}
-  //       />
-  //     </form>
-  //   </div>
-  // );
+
 
   // 버튼 토글링 함수
-  const openHandler = e => {
-    // if(!isOpen) {
-    //   setIsOpen(true);
-    // } else {
-    //   setIsOpen(false);
-    // }
+  const openHandler = () => {
+
     setIsOpen(prevOpen => !prevOpen);
   }
 
@@ -55,8 +36,9 @@ const TodoInput = ({onAdd, lastId}) => {
             <input
               type='text'
               placeholder='할 일을 입력 후, 엔터를 누르세요!'
-              onChange={todoChangeHandler}
-              value={todoInput}
+              // onChange={todoChangeHandler}
+              ref={$textInput}
+              // value={todoInput}
             />
           </form>
         </div>
