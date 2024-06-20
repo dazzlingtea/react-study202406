@@ -14,7 +14,6 @@ const DUMMY_TODOS = [
 const TodoTemplate = () => {
 
   const [todoList, setTodoList] = useState(DUMMY_TODOS);
-  const [left, setLeft] = useState(DUMMY_TODOS.filter(todo=> todo.done === false));
 
   const makeNewId = () => {
     if(todoList.length === 0) return 1;
@@ -48,11 +47,13 @@ const TodoTemplate = () => {
     //     : todo  // 해당 안되면 원래 자신 그대로 매핑
     // ));
   }
+  // 남은 할 일 개수 세기
+  const countRestTodo = todoList.filter(todo => !todo.done).length;
 
   return (
 
     <div className='TodoTemplate'>
-      <TodoHeader count={left.length} />
+      <TodoHeader count={countRestTodo} />
       <TodoMain todos={todoList} onRemove={removeTodo} onCheck={checkTodo} />
       <TodoInput onAdd={addTodo} />
       {/*<TodoHeader count={todos.length} />*/}
