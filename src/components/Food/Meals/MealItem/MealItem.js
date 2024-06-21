@@ -1,4 +1,5 @@
 import React, {useContext} from 'react';
+import React from 'react';
 import styles from './MealItem.module.scss';
 import MealItemForm from './MealItemForm';
 import CartContext from "../../../../store/cart-context";
@@ -25,6 +26,7 @@ const MealItem = ({id, price, description, name}) => {
     };
     // console.log('item: ', item);
     addItem(item);
+    console.log('item: ', item);
   };
 
   return (
