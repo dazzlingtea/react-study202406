@@ -15,8 +15,8 @@ const MealItem = ({id, price, description, name}) => {
     const item = {
       id: id,
       name: name,
-      amount: amount,
-      price: price,
+      amount: +amount, // 숫자로 변경
+      price: +amount * price ,
     };
     console.log('item: ', item);
   };
