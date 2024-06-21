@@ -34,7 +34,7 @@ const CartProvider = ({children}) => {
   const cartContext = {
     cartItems: [], // 상태값
     addItem: addItemHandler, // 상태를 업데이트하는 함수
-    addItem: item => {}, // 상태를 업데이트하는 함수
+    // addItem: item => {}, // 상태를 업데이트하는 함수
     removeItem: id => {},
   };
 
