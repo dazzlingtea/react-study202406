@@ -4,7 +4,7 @@ import styles from './Input.module.scss';
 const Input = ({ label, inputAttr }) => {
   return (
     <div className={styles.input}>
-      <lable>{label}</lable>
+      <lable htmlFor={inputAttr.id}>{label}</lable>
       <input {...inputAttr} />
     </div>
   );
