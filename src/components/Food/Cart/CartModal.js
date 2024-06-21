@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './CartModal.module.scss';
-import backdrop from "bootstrap/js/src/util/backdrop";
 
 const ModalOverlay = ({children}) => {
   return (
