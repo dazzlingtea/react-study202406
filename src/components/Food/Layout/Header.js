@@ -13,11 +13,11 @@ const Header = () => {
 
   return (
     <>
-      <header className={styles.header}>
+      <header className={header}>
         <h1>ReactMeals</h1>
         <HeaderCartButton />
       </header>
-      <div className={styles.mainImage}>
+      <div className={mainImage}>
         <img src={foodImage} alt="뷔페"/>
       </div>
     </>
