@@ -26,8 +26,8 @@ const CartProvider = ({children}) => {
 
   // Provider가 실제로 관리할 상태들의 구체적인 내용들
   const cartContext = {
-    cartItems: [],
-    addItem: item => {},
+    cartItems: [], // 상태값
+    addItem: item => {}, // 상태를 업데이트하는 함수
     removeItem: id => {},
   };
 
