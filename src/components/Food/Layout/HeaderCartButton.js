@@ -1,38 +1,41 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import CartIcon from "./CartIcon";
 import styles from './HeaderCartButton.module.scss';
 import CartContext from "../../../store/cart-context";
 
 const HeaderCartButton = ({ onShow }) => {
 
-  const {button, icon, badge} = styles;
+  const {button, icon, badge, bump} = styles;
 
+  // bump 애니메이션을 제어하는 상태변수
+  const [isBump, setIsBump] = useState(false);
+  // 장바구니 배열
   const {cartItems} = useContext(CartContext);
 
-  // const calcTotalAmount = () => {
-  //   let totalAmount = 0;
-  //   for(const item of cartItems) {
-  //     totalAmount += item.amount;
-  //   }
-  //   return totalAmount;
-  // };
+  useEffect(() => {
+
+    if(cartItems.length === 0) return;
+
+    // console.log('useEffect 실행!');
+    setIsBump(true);
+
+    // 애니메이션 실행 후 클래스 제거
+    const timer = setTimeout(()=> {
+      setIsBump(false);
+    }, 300)
+
+    return () => clearTimeout(timer);
+
+  }, [cartItems]);
+
   const numberOfCart = cartItems.reduce((accum, current)=> accum + current.amount, 0);
 
-  // let result = 0;
-  // if(cartItems.length > 0) {
-  //   result = cartItems
-  //             .map(item=> item.amount)
-  //             .reduce((count, amount)=> count + amount);
-  // }
-
   return (
-    <button className={button} onClick={onShow}>
+    <button className={`${button} ${isBump? bump: undefined}`} onClick={onShow}>
       <span className={icon}>
         <CartIcon/>
       </span>
       <span>My Cart</span>
-      {/*<span className={badge}>{result}</span>*/}
-      {/*<span className={badge}>{calcTotalAmount()}</span>*/}
       <span className={badge}>{numberOfCart}</span>
     </button>
   );

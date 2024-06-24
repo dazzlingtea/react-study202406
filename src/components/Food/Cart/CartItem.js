@@ -27,15 +27,7 @@ const CartItem = ({ cart }) => {
     addItem(item);
   }
   const cartRemoveHandler = e => {
-  //   if(cart.amount > 1) {
-  //     const item = {
-  //       ...cart,
-  //       amount: -1,
-  //     };
-  //     addItem(item);
-  //   } else {
       removeItem(id);
-    // }
   };
 
   return (
