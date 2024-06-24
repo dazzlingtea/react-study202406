@@ -48,30 +48,35 @@ const cartReducer = (state, action) => {
       totalPrice: updatePrice
     }; // 새로운 상태
   } else if(action.type === 'REMOVE') { // 장바구니 제거
-    const targetCartItem = action.value;
 
-    // 기존에 등록된 메뉴인지 확인해보기 위해 해당 아이템의 인덱스를 탐색
-    const index = state.items.findIndex(item => item.id === targetCartItem.id);
-    console.log('removeItem에서 index: ', index);
-    const existingItems = [...state.items];
-    existingItems[index].amount -= targetCartItem.amount;
+    // 기존에 장바구니의 수량이 1인 경우 - 장바구니 배열에서 제거
 
-    let updatedRemoveItems = [...existingItems];
+    // 1보다 큰 경우 - 수량 1만큼 감소
 
-
-    if(existingItems[index].amount <= 0) {
-      existingItems.splice(index, 1);
-      updatedRemoveItems = [...existingItems];
-      console.log('스플라이스이후: ',updatedRemoveItems);
-    }
-
-    const afterRemovePrice = state.totalPrice
-              - (action.value.price * (action.value.amount+1));
-
-    return {
-      items: updatedRemoveItems,
-      totalPrice: afterRemovePrice,
-    }; // 새로운 상태
+    // const targetCartItem = action.value;
+    //
+    // // 기존에 등록된 메뉴인지 확인해보기 위해 해당 아이템의 인덱스를 탐색
+    // const index = state.items.findIndex(item => item.id === targetCartItem.id);
+    // console.log('removeItem에서 index: ', index);
+    // const existingItems = [...state.items];
+    // existingItems[index].amount -= targetCartItem.amount;
+    //
+    // let updatedRemoveItems = [...existingItems];
+    //
+    //
+    // if(existingItems[index].amount <= 0) {
+    //   existingItems.splice(index, 1);
+    //   updatedRemoveItems = [...existingItems];
+    //   console.log('스플라이스이후: ',updatedRemoveItems);
+    // }
+    //
+    // const afterRemovePrice = state.totalPrice
+    //           - (action.value.price * (action.value.amount+1));
+    //
+    // return {
+    //   items: updatedRemoveItems,
+    //   totalPrice: afterRemovePrice,
+    // }; // 새로운 상태
   }
 
   return defaultState; // 새로운 상태
@@ -101,12 +106,6 @@ const CartProvider = ({children}) => {
       value: id
     });
   }
-  // const removeItemHandler = item => {
-  //   dispatchCartAction({
-  //     type: 'REMOVE',
-  //     value: item
-  //   });
-  // }
 
   // Provider가 실제로 관리할 상태들의 구체적인 내용들
   const cartContext = {
