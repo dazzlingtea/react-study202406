@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useReducer} from 'react';
 import CartContext from "./cart-context";
 
 // 중앙관리 상태값 (state)
@@ -35,15 +35,26 @@ const cartReducer = (state, action) => {
 
 const CartProvider = ({children}) => {
 
-  //
+  // 리듀서를 사용하여 상태 데이터를 업데이트
+  // param1: 리듀서 함수
+  // param2: 초기 상태값
+  // return1: 상태객체를 사용할 수 있는 변수
+  // return2: 상태업데이트를 위한 액션을 취하는 함수
+  const [cartState, dispatchCartAction] = useReducer(cartReducer, defaultState);
 
   const addItemHandler = item => {
-      console.log("장바구니에 데이터 추가! - ", item);
+    // console.log("장바구니에 데이터 추가! - ", item);
+
+    dispatchCartAction({
+      type: 'ADD',
+      value: item
+    });
   };
 
   // Provider가 실제로 관리할 상태들의 구체적인 내용들
   const cartContext = {
-    cartItems: [], // 상태값
+    cartItems: cartState.items, // 상태값
+    totalPrice: cartState.totalPrice,
     addItem: addItemHandler, // 상태를 업데이트하는 함수
     // addItem: item => {}, // 상태를 업데이트하는 함수
     removeItem: id => {},
