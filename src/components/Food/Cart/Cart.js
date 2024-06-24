@@ -21,7 +21,7 @@ import CartItem from "./CartItem";
 const Cart = ({onClose}) => {
 
   // const ctx = useContext(CartContext); // ctx 안에 cartItem, addItem, removeItem 존재
-  const {cartItems} = useContext(CartContext); // ctx 안에 cartItem, addItem, removeItem 존재
+  const {cartItems, totalPrice} = useContext(CartContext); // ctx 안에 cartItem, addItem, removeItem 존재
 
   console.log('cart: ', cartItems);
 
@@ -47,7 +47,7 @@ const Cart = ({onClose}) => {
       </ul>
       <div className={total}>
         <span>주문 총액</span>
-        <span>58,000원</span>
+        <span>{new Intl.NumberFormat('ko-KR').format(totalPrice)}원</span>
       </div>
       <div className={actions}>
         <button className={btnAlt} onClick={onClose}>닫기</button>
