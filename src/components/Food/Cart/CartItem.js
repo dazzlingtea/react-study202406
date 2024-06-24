@@ -5,7 +5,7 @@ import CartContext from "../../../store/cart-context";
 
 const CartItem = ({ cart }) => {
 
-  const { name, price, amount } = cart;
+  const { id, name, price, amount } = cart;
 
   const { addItem, removeItem } = useContext(CartContext);
 
@@ -27,16 +27,16 @@ const CartItem = ({ cart }) => {
     addItem(item);
   }
   const cartRemoveHandler = e => {
-    if(cart.amount > 1) {
-      const item = {
-        ...cart,
-        amount: -1,
-      };
-      addItem(item);
-    } else {
-      removeItem(cart);
-    }
-  }
+  //   if(cart.amount > 1) {
+  //     const item = {
+  //       ...cart,
+  //       amount: -1,
+  //     };
+  //     addItem(item);
+  //   } else {
+      removeItem(id);
+    // }
+  };
 
   return (
     <li className={cartItem}>
