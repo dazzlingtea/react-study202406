@@ -7,7 +7,7 @@ const CartItem = ({ cart }) => {
 
   const { name, price, amount } = cart;
 
-  const { addItem } = useContext(CartContext);
+  const { addItem, removeItem } = useContext(CartContext);
 
   const {
     'cart-item': cartItem,
@@ -26,6 +26,17 @@ const CartItem = ({ cart }) => {
     };
     addItem(item);
   }
+  const cartRemoveHandler = e => {
+    if(cart.amount > 1) {
+      const item = {
+        ...cart,
+        amount: -1,
+      };
+      addItem(item);
+    } else {
+      removeItem(cart);
+    }
+  }
 
   return (
     <li className={cartItem}>
@@ -37,7 +48,7 @@ const CartItem = ({ cart }) => {
         </div>
       </div>
       <div className={actions}>
-        <button>−</button>
+        <button onClick={cartRemoveHandler}>−</button>
         <button onClick={cartAddHandler}>+</button>
       </div>
     </li>
