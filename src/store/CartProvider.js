@@ -95,12 +95,18 @@ const CartProvider = ({children}) => {
     });
   };
 
-  const removeItemHandler = item => {
+  const removeItemHandler = id => {
     dispatchCartAction({
       type: 'REMOVE',
-      value: item
+      value: id
     });
   }
+  // const removeItemHandler = item => {
+  //   dispatchCartAction({
+  //     type: 'REMOVE',
+  //     value: item
+  //   });
+  // }
 
   // Provider가 실제로 관리할 상태들의 구체적인 내용들
   const cartContext = {
