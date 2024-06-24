@@ -63,8 +63,13 @@ const cartReducer = (state, action) => {
       existingItems[index].amount--;
       updatedItems = [...existingItems];
     }
+
+    // 총액 계산
+    const updatedPrice = state.totalPrice - existingItems[index].price;
+
     return {
-      items: updatedItems
+      items: updatedItems,
+      totalPrice: updatedPrice,
     }
   }
 
