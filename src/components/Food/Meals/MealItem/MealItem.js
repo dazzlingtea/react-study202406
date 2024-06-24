@@ -1,5 +1,4 @@
 import React, {useContext} from 'react';
-import React from 'react';
 import styles from './MealItem.module.scss';
 import MealItemForm from './MealItemForm';
 import CartContext from "../../../../store/cart-context";
