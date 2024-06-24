@@ -49,34 +49,23 @@ const cartReducer = (state, action) => {
     }; // 새로운 상태
   } else if(action.type === 'REMOVE') { // 장바구니 제거
 
+    // 기존 장바구니 배열 사본
+    const existingItems = [...state.items];
+
+    // 제거 or 수량감소 대상의 인덱스 탐색
+    const index = existingItems.findIndex(item => item.id === action.value);
+
+    let updatedItems;
     // 기존에 장바구니의 수량이 1인 경우 - 장바구니 배열에서 제거
-
-    // 1보다 큰 경우 - 수량 1만큼 감소
-
-    // const targetCartItem = action.value;
-    //
-    // // 기존에 등록된 메뉴인지 확인해보기 위해 해당 아이템의 인덱스를 탐색
-    // const index = state.items.findIndex(item => item.id === targetCartItem.id);
-    // console.log('removeItem에서 index: ', index);
-    // const existingItems = [...state.items];
-    // existingItems[index].amount -= targetCartItem.amount;
-    //
-    // let updatedRemoveItems = [...existingItems];
-    //
-    //
-    // if(existingItems[index].amount <= 0) {
-    //   existingItems.splice(index, 1);
-    //   updatedRemoveItems = [...existingItems];
-    //   console.log('스플라이스이후: ',updatedRemoveItems);
-    // }
-    //
-    // const afterRemovePrice = state.totalPrice
-    //           - (action.value.price * (action.value.amount+1));
-    //
-    // return {
-    //   items: updatedRemoveItems,
-    //   totalPrice: afterRemovePrice,
-    // }; // 새로운 상태
+    if (index != -1 && existingItems[index].amount === 1) {
+      updatedItems = existingItems.filter(item => item.id !== action.value);
+    } else { // 1보다 큰 경우 - 수량 1만큼 감소
+      existingItems[index].amount--;
+      updatedItems = [...existingItems];
+    }
+    return {
+      items: updatedItems
+    }
   }
 
   return defaultState; // 새로운 상태
