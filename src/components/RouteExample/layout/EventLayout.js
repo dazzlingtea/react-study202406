@@ -1,11 +1,11 @@
 import React from 'react';
-import EventNavigation from "./EventNavigation";
+import EventsNavigation from "./EventsNavigation";
 import {Outlet} from "react-router-dom";
 
 const EventLayout = () => {
   return (
     <>
-      <EventNavigation />
+      <EventsNavigation />
       <Outlet />
     </>
   );

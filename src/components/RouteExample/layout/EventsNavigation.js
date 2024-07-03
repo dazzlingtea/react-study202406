@@ -1,8 +1,8 @@
 import React from "react";
-import styles from './EventNavigation.module.scss';
+import styles from './EventsNavigation.module.scss';
 import {NavLink} from "react-router-dom";
 
-const EventNavigation = () => {
+const EventsNavigation = () => {
 
   const activeClassFn = ({isActive}) => {
     return isActive ? styles.active : undefined;
@@ -23,4 +23,4 @@ const EventNavigation = () => {
   );
 };
 
-export default EventNavigation;
+export default EventsNavigation;
