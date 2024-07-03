@@ -7,13 +7,26 @@ const Events = () => {
   const [eventList, setEventList] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:8282/events')
-      .then(res => res.json())
-      .then(jsonData => {
-        console.log(jsonData);
-        setEventList(jsonData);
-      })
+    (async () => {
+      const response = await fetch('http://localhost:8282/events');
+      const jsonData = await response.json();
+      setEventList(jsonData);
+    })(); // 바로 실행
+
   }, []);
+
+  // useEffect(() => {
+  //
+  //   const fetchEvents = async () => {
+  //     const response = await fetch('http://localhost:8282/events');
+  //     const jsonData = await response.json();
+  //     setEventList(jsonData);
+  //
+  //   };
+  //
+  //   fetchEvents();
+  //
+  // }, []);
 
 
   return (
