@@ -1,10 +1,10 @@
 import React from 'react';
 import Home from "./components/RouteExample/pages/Home";
-import Products from "./components/RouteExample/pages/Products";
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import RootLayout from "./components/RouteExample/layout/RootLayout";
 import ErrorPage from "./components/RouteExample/pages/ErrorPage";
-import ProductDetail from "./components/RouteExample/pages/ProductDetail";
+import Events from "./components/RouteExample/pages/Events";
+import EventDetail from "./components/RouteExample/pages/EventDetail";
 
 // 라우터 설정
 const router = createBrowserRouter([
@@ -15,9 +15,9 @@ const router = createBrowserRouter([
     children: [
       // { path: '', element: <Home /> },
       { index: true, element: <Home /> },
-      { path: 'products', element: <Products /> },
-      { path: 'products/:prodId/page/:pageNo', element: <ProductDetail /> }
-    // 메뉴에 따라 paht 추가하면 됨
+      { path: 'events', element: <Events /> },
+      { path: 'events/:eventId', element: <EventDetail /> }
+    // 메뉴에 따라 path 추가하면 됨
     ]
   },
 
