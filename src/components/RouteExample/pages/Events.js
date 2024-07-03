@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
+import EventList from "../components/EventList";
 
 
 const Events = () => {
@@ -32,15 +33,7 @@ const Events = () => {
   return (
     <>
       <h1>Events Page</h1>
-      <ul>
-        {
-          eventList.map(event => (
-            <li key={event.id}>
-                <Link to={event.id}>{event.title}</Link>
-            </li>
-          ))
-        }
-      </ul>
+      <EventList eventList={eventList} />
     </>
   );
 };
