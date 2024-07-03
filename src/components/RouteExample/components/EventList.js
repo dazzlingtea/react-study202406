@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './EventList.module.scss'
+import {Link} from "react-router-dom";
 
 const EventList = ({ eventList }) => {
 
@@ -12,13 +13,13 @@ const EventList = ({ eventList }) => {
         {
           eventList.map(ev => (
             <li key={ev.id} className={item}>
-              <a href="#">
+              <Link to={ev.id.toString()}>
                 <img src={ev.image} alt={ev.title}/>
                 <div className={content}>
                   <h2>{ev.title}</h2>
                   <time>{ev.date}</time>
                 </div>
-              </a>
+              </Link>
             </li>
           ))
         }
