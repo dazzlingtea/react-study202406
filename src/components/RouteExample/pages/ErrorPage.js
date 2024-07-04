@@ -7,11 +7,12 @@ const ErrorPage = () => {
 
   // 에러가 발생했을 때 throw에 전달한 객체를 읽는 방법
   const error = useRouteError();
-  // console.log('err: ', error.data); // JSON이지 자바스크립트 객체가 아님
 
-  let errorMessage
+  let errorMessage = '서버와의 연결이 원활하지 않습니다.';
+
   if(error.status === 400) {
-    errorMessage = JSON.parse(error.data).message;
+    // errorMessage = JSON.parse(error.data).message;
+    errorMessage = error.data.message;  // router의  json 함수를 사용하면 파싱 필요 없음
     // console.log(errorMessage);
   }
   if(error.status === 404) {

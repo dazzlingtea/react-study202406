@@ -1,5 +1,5 @@
 import React from 'react';
-import {useLoaderData} from "react-router-dom";
+import {useLoaderData, json} from "react-router-dom";
 import EventList from "../components/EventList";
 
 
@@ -23,12 +23,14 @@ export default Events;
 // loader를 app.js로부터 아웃소싱
 export const loader = async () => {
 
-  const response = await fetch('http://localhost:8282/events?');
+  const response = await fetch('http://localhost:8282/events?sort=date');
 
   if(!response.ok) {
     const errorText = await response.text();
 
-    throw new Response(JSON.stringify({ message: errorText }),
+    // throw new Response(JSON.stringify({ message: errorText }),
+    throw json(     // router의 json 함수를 사용하면 바로 에러 객체 보낼 수 있음
+      { message: errorText },
       {
         status: response.status
       }
