@@ -12,6 +12,23 @@ const EventForm = ({method, event={}}) => {
     'start-date': date
   } = event;
 
+  // 날짜 형식을 변경 (yyyy-MM-dd)
+  /**
+   *
+   * @param date - yyyy년 MM월 dd일
+   */
+  const convertDateFormat = (date) => {
+    const [yearPart, monthDayPart] = date.split('년 ');
+    const [monthPart, dayPart] = monthDayPart.split("월 ");
+    const day = dayPart.replace('일', '');
+    // console.log('date: ', {yearPart, monthPart, day})
+    return `${yearPart}-${monthPart}-${day}`;
+  };
+  let formatDate;
+  if(event.date) {
+    formatDate = convertDateFormat(date);
+  }
+
   // const {eventId: id} = useParams();
   const navigate = useNavigate();
 
@@ -36,7 +53,7 @@ const EventForm = ({method, event={}}) => {
       <p>
         <label htmlFor="date">Date</label>
         <input id="date" type="date" name="date"
-               defaultValue={event ? date : ''} required/>
+               defaultValue={event ? formatDate : ''} required/>
       </p>
       <p>
         <label htmlFor="description">Description</label>
