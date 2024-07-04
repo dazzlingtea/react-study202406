@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useLoaderData, useParams} from "react-router-dom";
+import EventItem from "../components/EventItem";
 
 const EventDetail = () => {
 
@@ -11,7 +12,7 @@ const EventDetail = () => {
   useEffect(()=>{
     (async ()=>{
       const response = await fetch(`http://localhost:8282/events/${id}`);
-
+      // 예외처리 필요한데 생략
       const json = await response.json();
       setEv(json);
 
@@ -20,13 +21,7 @@ const EventDetail = () => {
 
 
   return (
-    <>
-      <h1>EventDetail Page</h1>
-      <p>{ev.title}</p>
-      <p>{ev.desc}</p>
-      <p>{ev['start-date']}</p>
-      }
-    </>
+    <EventItem event={ev} />
   );
 };
 
