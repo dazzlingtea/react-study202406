@@ -1,5 +1,5 @@
 import React from 'react';
-import {useLoaderData, useRouteLoaderData} from "react-router-dom";
+import {redirect, useLoaderData, useRouteLoaderData} from "react-router-dom";
 import EventItem from "../components/EventItem";
 
 const EventDetail = () => {
@@ -27,5 +27,19 @@ export const loader = async ({ params }) => {
   }
 
   return await response.json();
+
+};
+// action을 트리거 하는 방법
+// 실제로 버튼이 있는 곳으로 이동 (EventItem.js)
+export const action = async () => {
+    if(!window.confirm('정말 삭제하시겠습니까?')) return;
+  const response = await fetch(`http://localhost:8282/events/${params.eventId}`, {
+          method: 'DELETE'
+  });
+
+  if(!response.ok){
+    //
+  }
+  return redirect('/events')
 
 };
