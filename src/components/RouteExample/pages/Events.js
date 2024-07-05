@@ -3,6 +3,9 @@ import {useLoaderData, json} from "react-router-dom";
 import EventList from "../components/EventList";
 import EventSkeleton from "../components/EventSkeleton";
 
+// npm install loadsh
+import {throttle} from "lodash";
+
 
 const Events = () => {
 
@@ -16,20 +19,23 @@ const Events = () => {
   const [ events, setEvents] = useState([]);
 
   // 로딩 상태 체크
-  const [loading, setloading] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  // 현재 페이지 번호
+  const [currentPage, setCurrentPage] = useState(1);
 
 
   // 서버로 목록 조회 요청 보내기
   const loadEvents = async()=> {
 
     console.log('start loading... ');
-    setloading(true);
+    setLoading(true);
 
-    const response = await fetch('http://localhost:8282/events/page/1?sort=date');
+    const response = await fetch(`http://localhost:8282/events/page/${currentPage}?sort=date`);
     const events = await response.json();
 
     setEvents(events); // fetch 종료시 스켈레톤 안보이게 처리
-    setloading(false);
+    setLoading(false);
     console.log('end loading!!');
   }
 
@@ -37,6 +43,27 @@ const Events = () => {
   useEffect(() => {
     loadEvents();
   }, []);
+
+  // 스크롤 핸들러
+  const scrollHandler = throttle(() => {
+    if(loading ||
+      window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeigh
+    ) {
+      return;
+    }
+
+  }, 2000);
+
+  // 스크롤 이벤트 바인딩
+  useEffect(() => {
+    window.addEventListener('scroll', e=>scrollHandler);
+
+    return () => {
+      window.removeEventListener('scroll', scrollHandler);
+      scrollHandler.cancel(); // 쓰로틀 취소
+    }
+  }, [currentPage, loading]);
+  // 페이지번호나 로딩상태가 바뀌면 스크롤이벤트 취소하고 다시 걸도록 설정
 
   return (
     <>
