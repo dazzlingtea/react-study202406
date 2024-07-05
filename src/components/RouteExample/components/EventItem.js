@@ -14,30 +14,19 @@ const EventItem = ({ event }) => {
     'img-url':image,
     'start-date':date
   } = event;
+  
 
-  // const navigate = useNavigate();
+  const deleteHandler =  (e) => {
+    if(!window.confirm('정말 삭제하시겠습니까?')) return;
 
-  // const fetchDelete = async () => {
-  //   const res = await fetch(`http://localhost:8282/events/${id}`, {
-  //     method: 'DELETE'
-  //   });
-  // }
+    // action을 트리거
+    submit(null, {method:'DELETE'});
 
-  // const deleteHandler =  (e) => {
-  //   // EventDetail(여기에 Pathvariable로 id 존재) -> EventItem
-  //   // console.log('id: ', id)
-  //   if(!window.confirm('정말 삭제하시겠습니까?')) return;
-  //
-  //   // fetchDelete();
-  //
-  //   (async() => {
-  //     await fetch(`http://localhost:8282/events/${id}`, {
-  //       method: 'DELETE'
-  //     });
-  //     navigate('/events');
-  //   })();
-  //
-  // };
+    /*
+      <Form method='delete'>
+     */
+
+  };
 
   return (
     <article className={styles.event}>
@@ -48,7 +37,7 @@ const EventItem = ({ event }) => {
       <menu className={styles.actions}>
         <Link to="edit">Edit</Link>
         <button
-          // onClick={deleteHandler}
+          onClick={deleteHandler}
         >Delete</button>
       </menu>
     </article>
