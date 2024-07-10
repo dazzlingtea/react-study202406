@@ -25,7 +25,7 @@ const Events = () => {
   const [isFinish, setIsFinish] = useState(false);
 
   // 로딩 스켈레톤 스크린을 보여줄 개수
-  const [skeletonCount, setSkeletonCount] = useState()
+  const [skeletonCount, setSkeletonCount] = useState(4)
 
   // 서버로 목록 조회 요청보내기
   const loadEvents = async() => {
