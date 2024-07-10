@@ -24,6 +24,8 @@ const Events = () => {
   // 더이상 가져올 데이터가 있는지 확인
   const [isFinish, setIsFinish] = useState(false);
 
+  // 로딩 스켈레톤 스크린을 보여줄 개수
+  const [skeletonCount, setSkeletonCount] = useState()
 
   // 서버로 목록 조회 요청보내기
   const loadEvents = async() => {
@@ -39,7 +41,7 @@ const Events = () => {
     const response = await fetch(`http://localhost:8282/events/page/${currentPage}?sort=date`);
     const { events: loadedEvents, totalCount } = await response.json();
 
-    // console.log('loaded: ', loadedEvents);
+    console.log('loaded: ', {loadedEvents, totalCount, len:loadedEvents.length});
 
     const updatedEvents = [...events, ...loadedEvents ];
     console.log(updatedEvents);
@@ -52,6 +54,13 @@ const Events = () => {
 
     // 로딩이 끝나면 더 이상 가져올게 있는지 여부를 체크한다.
     setIsFinish(totalCount === updatedEvents.length);
+
+    // 로딩 후 지금까지 불러온 데이터 개수(현재 렌더링된 개수)를 총 데이터 개수에서 차감
+    const restEventsCount = totalCount - updatedEvents.length;
+
+    // skeleton 개수 구하기 -> 남은 개수가 4보다 크면 4로 세팅 4보다 작으면 그 수로 세팅
+    const skeletonCnt = Math.min(4, restEventsCount);
+    setSkeletonCount(skeletonCnt);
   };
 
   // 초기 이벤트 1페이지 목록 가져오기
@@ -82,7 +91,7 @@ const Events = () => {
   return (
     <>
       <EventList eventList={events} />
-      {loading && <EventSkeleton />}
+      {loading && <EventSkeleton count={skeletonCount} />}
     </>
   );
 };
