@@ -121,7 +121,9 @@ const Events = () => {
   return (
     <>
       <EventList eventList={events} />
-      <div ref={skeletonBoxRef} style={{ height: '300px'}}>
+      <div ref={skeletonBoxRef}
+           // style={{ height: '300px', background: 'yellow' }}
+      >
         {loading && <EventSkeleton count={skeletonCount} />}
       </div>
     </>
